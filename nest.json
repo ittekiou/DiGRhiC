@@ -1,26 +1,18 @@
+
 {
   "sll": "0.1",
-  "name": "CESE PEC｜排泄猛者倶楽部",
-  "url": "https://ittekiou.github.io/CESE-PEC/",
-  "about": "Club Excretus: Societas Excretorum / The Prolific Excretors Club — 第一条　どっかでつながっとく。以上。",
-  "lang": "ja",
-  "updated": "2026-11-06",
+  "name": "DiGRhiC｜Digital Gardeners' Rootwork",
+  "url": "https://ittekiou.github.io/DiGRhiC/",
+  "about": "Digital Gardens Rhizomatically Connected. From Solo Gardens to Multiplayer Gardens.",
+  "lang": "en",
+  "updated": "2026-11-15",
   "feeds": [
     {
-      "title": "CESE PEC 💩 排泄猛者倶楽部",
-      "url": "https://github.com/ittekiou/CESE-PEC/commits/main.atom"
-    },
-    {
-      "title": "CESE PEC｜The Excreta Pit 🌱",
-      "url": "https://www.are.na/cese-pec-the-rhizome-pit-a7jqy-i3aee/cese-pec-the-excreta-pit/feed/rss"
+      "title": "DiGRhiC｜GitHub Updates",
+      "url": "https://github.com/ittekiou/DiGRhiC/commits/main.atom"
     }
   ],
-  "links": [
-    {
-      "title": "The Rhizome Pit 🌱｜Are.na",
-      "url": "https://www.are.na/cese-pec-the-rhizome-pit-a7jqy-i3aee"
-    }
-  ],
+  "links": [],
   "nests": [
     {
       "name": "DyXis",
@@ -33,7 +25,7 @@
     {
       "name": "EAT-IF",
       "url": "https://ittekiou.github.io/EAT-IF/"
-    }, 
+    },
     {
       "name": "CHIC TEC｜繭topia",
       "url": "https://ittekiou.github.io/CHIC-TEC/"
