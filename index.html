@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CESE PEC｜排泄猛者倶楽部のDyXis Commons</title>
+<meta name="description" content="CESE PEC｜排泄猛者倶楽部のDyXis ComMounds。Nestの更新が集まる蟻塚。地図と仕入れから、まだ知らないTraceへ。">
+<link rel="icon" type="image/png" href="/CESE-PEC/favicon.png">
+<link rel="icon" type="image/png" href="/CESE-PEC/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/CESE-PEC/apple-touch-icon.png">
+<style>
+  :root {
+    --bg: #000; --fg: #f2f2f2; --sub: #a8a8a8; --dim: #5c5c5c;
+    --blue: #6aa8f0; --line: #3a3a3a; --card: #0e0e0e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", sans-serif;
+    line-height: 1.6;
+  }
+  header { text-align: center; padding: 32px 16px 8px; }
+  header .logo { width: min(560px, 100%); height: auto; display: block; margin: 0 auto; }
+  .brand { font-size: 56px; font-weight: 700; letter-spacing: 0.01em; margin: 0; line-height: 1.1; }
+  .brand .x { color: var(--blue); }
+  .tag { margin: 10px 0 0; font-size: 22px; }
+  .tag.locus { color: var(--fg); font-weight: 500; }
+  .tag.sub { color: var(--sub); font-size: 19px; margin-top: 4px; }
+  main { max-width: 960px; margin: 0 auto; padding: 16px; }
+  h2 { font-size: 15px; font-weight: 600; color: var(--sub); letter-spacing: 0.08em; margin: 32px 0 8px; }
+  #status { color: var(--sub); font-size: 14px; text-align: center; min-height: 1.6em; }
+  #from { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 4px 0 8px; }
+  #from input { flex: 1 1 260px; max-width: 420px; background: var(--card); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font: inherit; font-size: 14px; }
+  #from button { background: none; color: var(--blue); border: 1px solid var(--blue); border-radius: 8px; padding: 8px 14px; font: inherit; font-size: 14px; cursor: pointer; }
+  #from a { color: var(--sub); font-size: 13px; align-self: center; }
+  #map { width: 100%; height: auto; display: block; }
+  .node circle { fill: var(--card); stroke: var(--fg); stroke-width: 1.5; cursor: pointer; }
+  .node.start circle { stroke: var(--blue); stroke-width: 2.5; }
+  .node.missing circle { stroke: var(--dim); stroke-dasharray: 4 3; }
+  /* 2段目の巣：小さく薄く。押すと、その巣から見た地図へ */
+  .node.far { cursor: pointer; }
+  .node.far circle { fill: #1c3350; stroke: var(--blue); stroke-width: 1.5; stroke-dasharray: 3 3; }
+  .node.far:hover circle { fill: #2e5a8c; stroke-dasharray: none; }
+  .node.far text { font-size: 11px; fill: #cfcfcf; paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round; }
+  .node.far text.ant { font-size: 13px; stroke: none; text-anchor: middle; }
+  #far { margin: 18px 0 0; font-size: 13px; color: var(--sub); line-height: 2; }
+  #far:empty { display: none; }
+  #far a { color: var(--sub); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; margin: 0 4px 6px 0; display: inline-block; text-decoration: none; }
+  #far a:hover { color: var(--blue); border-color: var(--blue); }
+  .legend .far::before { width: 10px; height: 10px; border-radius: 50%; border: 1.5px dashed var(--blue); }
+  .node.fresh1 circle { fill: #1f4f86; }   /* 仕入れの前24時間以内に新着 */
+  .node.fresh7 circle { fill: #15263b; }   /* 7日以内に新着 */
+  /* 24時間以内に新着のある巣は、ゆっくり呼吸する */
+  .node.fresh1 circle { animation: breathe 4s ease-in-out infinite; }
+  @keyframes breathe {
+    0%, 100% { fill: #1f4f86; stroke: var(--fg); }
+    50%      { fill: #3a78c2; stroke: var(--blue); }
+  }
+  @media (prefers-reduced-motion: reduce) { .node.fresh1 circle { animation: none; } }
+  .node text { fill: var(--fg); font-size: 13px; text-anchor: middle; pointer-events: none; }
+  .node.missing text { fill: var(--dim); }
+  /* 行き先の印：↗ はその巣のページへ、🐜 はその巣から見た地図（蟻塚）へ */
+  .node circle.badge, .node.fresh1 circle.badge, .node.start circle.badge { fill: #1c3350; stroke: var(--blue); stroke-width: 1.5; stroke-dasharray: 3 3; animation: none; }
+  .node .tomap:hover circle.badge { fill: #2e5a8c; stroke-dasharray: none; }
+  .node text.ant { font-size: 12px; stroke: none; text-anchor: middle; }
+  .legend .go::before { display: none; }
+  .legend .go b { display: inline-block; width: 20px; height: 20px; line-height: 20px; border-radius: 50%; text-align: center; font-size: 12px; margin-right: 6px; vertical-align: middle; }
+  .legend .go b.pg { width: 14px; height: 14px; border: 1.5px solid var(--fg); background: #1f4f86; }
+  .legend .go b.ant { border: 1.5px dashed var(--blue); background: #1c3350; line-height: 17px; }
+  .card .head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .card a.tomap { flex: none; color: var(--sub); font-size: 12px; text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; white-space: nowrap; }
+  .card a.tomap:hover { color: var(--blue); border-color: var(--blue); }
+  .edge { stroke: var(--sub); stroke-width: 1.2; fill: none; }
+  .edge.mutual { stroke: var(--blue); stroke-width: 1.8; }
+  .legend { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; font-size: 13px; color: var(--sub); }
+  .legend span::before { content: ""; display: inline-block; width: 22px; height: 0; vertical-align: middle; margin-right: 6px; border-top: 2px solid var(--sub); }
+  .legend .m::before { border-top-color: var(--blue); }
+  .legend .x::before { border-top: 2px dashed var(--dim); width: 12px; height: 12px; border-radius: 50%; border: 2px dashed var(--dim); }
+  .legend .f1::before, .legend .f7::before { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--fg); }
+  .legend .f1::before { background: #1f4f86; }
+  .legend .f7::before { background: #15263b; }
+  .legend .fresh { display: none; }
+  .legend.has-feeds .fresh { display: inline; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .card a.name { color: var(--fg); font-weight: 600; text-decoration: none; }
+  .card a.name:hover { color: var(--blue); }
+  .card p { margin: 6px 0 0; font-size: 13px; color: var(--sub); overflow-wrap: anywhere; }
+  .card .lag { color: var(--dim); font-size: 12px; }
+  .card.missing { border-style: dashed; }
+  /* リンク（札の links）：部屋の中の小さな案内 */
+  .card .links { margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .card .links a { color: var(--sub); font-size: 12px; text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; }
+  .card .links a:hover { color: var(--blue); border-color: var(--blue); }
+  .news { list-style: none; margin: 10px 0 0; padding: 10px 0 0; border-top: 1px solid var(--line); }
+  .news li { margin: 0 0 8px; font-size: 13px; line-height: 1.5; }
+  .news a { color: var(--fg); text-decoration: none; }
+  .news a:hover { color: var(--blue); }
+  .news .lag { display: block; }
+  #collected { color: var(--dim); font-size: 12px; text-align: center; margin-top: 4px; }
+  footer { text-align: center; color: var(--dim); font-size: 12px; padding: 32px 16px 48px; }
+  footer a { color: var(--sub); }
+  @media (max-width: 520px) { .brand { font-size: 44px; } .tag { font-size: 18px; } .tag.sub { font-size: 16px; } }
+  nav.site { text-align: center; font-size: 13px; color: var(--dim); margin: 14px 0 0; padding: 0 16px; }
+  nav.site a { color: var(--sub); text-decoration: none; }
+  nav.site a:hover { color: var(--blue); }
+  nav.site b { color: var(--fg); font-weight: 600; }
+  footer nav.site { margin: 0 0 14px; padding: 0; }
+  footer .credit { margin: 14px auto 0; max-width: 640px; line-height: 1.8; }
+  /* 別荘の名前は長さがまちまちなので、ロゴより控えめに */
+  header .brand { font-size: clamp(26px, 5.5vw, 40px); line-height: 1.25; }
+  /* 会則（この箱の README をそのまま読んで出す） */
+  #rules { max-width: 640px; margin: 8px auto 4px; padding: 0 16px; text-align: center; color: var(--sub); line-height: 1.8; }
+  #rules:empty { display: none; }
+  #rules h1, #rules h2, #rules h3 { color: var(--fg); font-size: 17px; margin: 14px 0 4px; }
+  #rules p { margin: 4px 0; }
+  #rules a { color: var(--blue); }
+  #rules hr { border: 0; border-top: 1px solid var(--line); width: 40%; margin: 12px auto; }
+  #rules ul, #rules ol { display: inline-block; text-align: left; margin: 4px 0; }
+</style>
+</head>
+<body>
+<header>
+  <p class="brand" id="ownName">Commons</p>
+  <p class="tag sub" id="ownAbout"></p>
+</header>
+<section id="rules" aria-label="会則"></section>
+<nav class="site"><b>地図（Commons）</b> ・ <a href="nest.json" target="_blank" rel="noopener">札（nest.json）</a> ・ <a href="https://ittekiou.github.io/dyxis/guide.html">DyXis のしくみ</a></nav>
+
+<main>
+  <form id="from">
+    <input id="startUrl" type="url" placeholder="あなたの巣の住所（例：https://example.github.io/nest/）" aria-label="出発点にする巣の住所">
+    <button type="submit">この巣から見る</button>
+    <a id="backHome" href="./" hidden>この別荘から見る</a>
+  </form>
+  <div id="status">巣をたどっています…</div>
+  <svg id="map" viewBox="0 0 800 560" role="img" aria-label="Nestのつながり">
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#a8a8a8"/>
+      </marker>
+      <marker id="arrM" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#6aa8f0"/>
+      </marker>
+    </defs>
+    <g id="edges"></g>
+    <g id="nodes"></g>
+  </svg>
+  <div class="legend">
+    <span>一方の参照</span>
+    <span class="m">相互参照</span>
+    <span class="x">取得できなかった巣</span>
+    <span class="far">2段目の巣</span>
+    <span class="fresh f1">24時間以内に新着</span>
+    <span class="fresh f7">7日以内に新着</span>
+    <span class="go"><b class="pg"></b>大きい丸を押すと、その巣のページへ</span>
+    <span class="go"><b class="ant">🐜</b>この丸を押すと、その巣から見た地図へ</span>
+  </div>
+
+  <h2>NESTS</h2>
+  <div id="collected"></div>
+  <div class="cards" id="cards"></div>
+  <div id="far"></div>
+</main>
+
+<footer>
+  <p>  JSONから確認できるのは相互参照まで。相互認知や交流は推定しない。<br>
+  updated は自己申告の日付。表示の差は「記載された更新日から取得時点までの経過」。<br>
+  巣のカードに並ぶ小さな札は、その巣が札に書いた「リンク」（札を持たない、ほかの場所）。<br>
+  地図に大きく描くのは、起点と、起点が札に書いた巣（1段目）。その巣たちが書いた巣（2段目）は小さな 🐜 の丸で描き、その先は数だけ数える。新着を仕入れるのは1段目まで。<br>
+  新着は、別荘が一日二回、各巣の feeds から仕入れたもの。「公開」は記事の側の時刻、「仕入れ」は別荘が取りに行った時刻。<br>
+  円の色は、仕入れた時点でいちばん新しい記事の公開がどれだけ前だったか。巣が動いたかどうかの目安で、誰かが読んだかどうかではない。</p>
+  <nav class="site"><b>地図（Commons）</b> ・ <a href="nest.json" target="_blank" rel="noopener">札（nest.json）</a> ・ <a href="https://ittekiou.github.io/dyxis/guide.html">DyXis のしくみ</a></nav>
+  <p class="credit">この別荘は、<a href="https://ittekiou.github.io/dyxis/">DyXis</a> のしくみで建てたもの。写して、自分の別荘にしてよい。<br>
+  DyXis｜built on SLL ・ Synchro-Lag LOCUS｜SLL</p>
+  <p class="credit">© 2026 K.E. Itekki and contributors<br>
+  Texts are published under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Code is released under the <a href="LICENSE">MIT License</a>.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script>
+// 会則：この箱の README.md を GitHub から読んで、見出しの下に出す（写した箱では、その箱の README）
+(async () => {
+  try {
+    const host = location.hostname;
+    if (!host.endsWith(".github.io") || !window.marked) return;
+    const owner = host.split(".")[0];
+    const seg = location.pathname.split("/").filter(Boolean)[0];
+    const repo = seg && !seg.includes(".") ? seg : host;
+    const r = await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/HEAD/README.md`, { cache: "no-store" });
+    if (!r.ok) return;
+    const box = document.getElementById("rules");
+    box.innerHTML = marked.parse(await r.text());
+    const h1 = box.querySelector("h1"); if (h1 && h1 === box.firstElementChild) h1.remove();  // 名前は上の見出しに出ているので
+    if (box.textContent.trim()) document.getElementById("ownAbout").hidden = true;  // 会則が出たら、札の自己紹介は引っ込める
+  } catch {}
+})();
+</script>
+<script>
+(() => {
+  const params = new URLSearchParams(location.search);
+  const HOME = "https://ittekiou.github.io/CESE-PEC/";
+  let here = HOME;
+  try { if (/^https?:$/.test(location.protocol)) here = new URL("./", location.href).href; } catch {}
+  const START = norm(params.get("start") || here);
+  const MAX_NODES = 60, MAX_DEPTH = 2;   // 0：起点　1：札に書いた巣　2：その先（🐜 の小さな丸）。3段目より先は数だけ
+
+  function norm(u) {
+    try { const x = new URL(u, location.href); x.hash = ""; x.search = ""; let s = x.href; return s.endsWith("/") ? s : s + "/"; }
+    catch { return u; }
+  }
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  const nodes = new Map();   // url -> {url, name, data, ok, depth, fetchedAt}
+  const edges = [];          // [from, to]
+  const beyondCand = new Set(), beyond = new Set();   // 3段目より先の巣（数だけ）
+
+  async function crawl() {
+    const queue = [[START, 0, null]];
+    while (queue.length && nodes.size < MAX_NODES) {
+      const [url, depth, hint] = queue.shift();
+      if (nodes.has(url)) continue;
+      const node = { url, name: hint || url, depth, ok: false, data: null, fetchedAt: null };
+      nodes.set(url, node);
+      try {
+        const r = await fetch(url + "nest.json", { cache: "no-store" });
+        if (!r.ok) throw new Error(r.status);
+        node.data = await r.json();
+        node.ok = true;
+        node.fetchedAt = new Date();
+        node.name = node.data.name || node.name;
+        for (const n of node.data.nests || []) {
+          if (!n || !n.url) continue;
+          const to = norm(n.url);
+          edges.push([url, to]);
+          if (depth < MAX_DEPTH) { if (!nodes.has(to)) queue.push([to, depth + 1, n.name]); }
+          else beyondCand.add(to);
+        }
+      } catch (e) { node.error = String(e); }
+      document.getElementById("status").textContent = `巣をたどっています…（${nodes.size}）`;
+    }
+    // 1段目までに書かれていて、たどれなかった巣は、点線の円で描く。2段目が書いた先の巣は、数だけ数える。
+    for (const [from, to] of edges) {
+      const f = nodes.get(from);
+      if (!nodes.has(to) && f && f.depth < MAX_DEPTH) nodes.set(to, { url: to, name: to, ok: false, unvisited: true, depth: f.depth + 1 });
+    }
+    for (const u of beyondCand) if (!nodes.has(u)) beyond.add(u);
+  }
+
+  const isFar = n => (n.depth || 0) >= 2;
+  function layout() {
+    const list = [...nodes.values()];
+    const cx = 400, cy = 280, R = 190, R2 = 300;
+    const near = list.filter(n => !isFar(n));
+    const ring = [near.find(n => n.url === START), ...near.filter(n => n.url !== START)].filter(Boolean);
+    const pos = new Map(), ang = new Map();
+    ring.forEach((n, i) => {
+      const a = -Math.PI / 2 + (2 * Math.PI * i) / Math.max(ring.length, 1);
+      ang.set(n.url, a);
+      pos.set(n.url, { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) });
+    });
+    // 2段目：はじめて書いた1段目の巣の外側に、小さく並べる
+    const kids = new Map();
+    for (const [from, to] of edges) {
+      const t = nodes.get(to);
+      if (!t || !isFar(t) || !ang.has(from)) continue;
+      if ([...kids.values()].some(a => a.includes(to))) continue;
+      if (!kids.has(from)) kids.set(from, []);
+      kids.get(from).push(to);
+    }
+    const slot = (2 * Math.PI) / Math.max(ring.length, 1);
+    for (const [from, arr] of kids) {
+      arr.forEach((u, i) => {
+        const a = ang.get(from) + (arr.length === 1 ? 0 : (i / (arr.length - 1) - 0.5) * slot * 0.8);
+        pos.set(u, { x: cx + R2 * Math.cos(a), y: cy + R2 * Math.sin(a), a });
+      });
+    }
+    return pos;
+  }
+
+  function draw() {
+    const pos = layout(), rr = u => (nodes.get(u) && isFar(nodes.get(u))) ? 12 : 34;
+    const key = (a, b) => a + "→" + b;
+    const set = new Set(edges.map(([a, b]) => key(a, b)));
+    const done = new Set();
+    let eh = "";
+    for (const [a, b] of edges) {
+      if (a === b || done.has(key(a, b))) continue;
+      const mutual = set.has(key(b, a));
+      done.add(key(a, b)); if (mutual) done.add(key(b, a));
+      const p = pos.get(a), q = pos.get(b); if (!p || !q) continue;
+      const dx = q.x - p.x, dy = q.y - p.y, d = Math.hypot(dx, dy) || 1;
+      const ra = rr(a), rb = rr(b);
+      const x1 = p.x + dx / d * ra, y1 = p.y + dy / d * ra, x2 = q.x - dx / d * (rb + 2), y2 = q.y - dy / d * (rb + 2);
+      eh += mutual
+        ? `<line class="edge mutual" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-start="url(#arrM)" marker-end="url(#arrM)"/>`
+        : `<line class="edge" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" marker-end="url(#arr)"/>`;
+    }
+    document.getElementById("edges").innerHTML = eh;
+
+    let nh = "";
+    for (const n of nodes.values()) {
+      const p = pos.get(n.url); if (!p) continue;
+      const far = isFar(n);
+      const cls = ["node", n.url === START ? "start" : "", n.ok ? "" : "missing", far ? "far" : freshness(n.url)].join(" ");
+      const label = String(n.name).split("｜")[0].slice(0, 10);
+      // 2段目の名前は、円の外側（地図の中心から離れる向き）に置いて、線と重ならないようにする
+      let tx = p.x, ty = p.y + 4, anchor = "middle";
+      if (far) {
+        const a = p.a ?? Math.atan2(p.y - 280, p.x - 400), c = Math.cos(a), s = Math.sin(a);
+        tx = p.x + c * 20; ty = p.y + s * 20 + 4;
+        anchor = c > 0.35 ? "start" : c < -0.35 ? "end" : "middle";
+        if (anchor === "middle") ty = p.y + (s < 0 ? -20 : 28);
+      }
+      nh += `<g class="${cls}" data-url="${esc(n.url)}"><title>${esc(n.name)}\n${esc(n.url)}</title>
+        <circle cx="${p.x}" cy="${p.y}" r="${far ? 13 : 34}"/><text x="${tx}" y="${ty}" style="text-anchor:${anchor}">${esc(label)}</text>${far ? `<text class="ant" x="${p.x}" y="${p.y + 5}">🐜</text>` : (n.url === START ? "" : `<g class="tomap"><title>この巣から見た地図へ</title><circle class="badge" cx="${p.x + 25}" cy="${p.y - 25}" r="11"/><text class="ant" x="${p.x + 25}" y="${p.y - 21}">🐜</text></g>`)}</g>`;
+    }
+    const g = document.getElementById("nodes");
+    g.innerHTML = nh;
+    // 描いたものが全部おさまるように、地図の枠を合わせる
+    try {
+      const b = document.getElementById("map").getBBox(), m = 16;
+      const x0 = Math.min(0, b.x - m), y0 = Math.min(0, b.y - m);
+      const x1 = Math.max(800, b.x + b.width + m), y1 = Math.max(560, b.y + b.height + m);
+      document.getElementById("map").setAttribute("viewBox", `${x0} ${y0} ${x1 - x0} ${y1 - y0}`);
+    } catch {}
+    g.querySelectorAll(".node").forEach(el => el.addEventListener("click", ev => {
+      const toMap = el.classList.contains("far") || ev.target.closest(".tomap");
+      location.href = toMap ? viewFrom(el.dataset.url) : pageOf(el.dataset.url);
+    }));
+  }
+
+  // 札の links（リンク）を、小さな札として並べる。http(s) の住所だけ
+  function linksOf(d) {
+    const ls = (Array.isArray(d.links) ? d.links : []).filter(l => l && /^https?:\/\//i.test(l.url || ""));
+    if (!ls.length) return "";
+    return `<p class="links">${ls.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.title || l.url)}</a>`).join("")}</p>`;
+  }
+  function cards() {
+    const out = [];
+    for (const n of nodes.values()) {
+      if (isFar(n)) continue;
+      if (!n.ok) {
+        out.push(`<div class="card missing"><a class="name" href="${esc(n.url)}">${esc(n.name)}</a><p>${n.unvisited ? "まだたどっていない巣" : "nest.json を取得できなかった"}</p><p class="lag">${esc(n.url)}</p></div>`);
+        continue;
+      }
+      const d = n.data;
+      let lag = "";
+      if (d.updated) {
+        const days = Math.floor((n.fetchedAt - new Date(d.updated + "T00:00:00")) / 86400000);
+        lag = `記載の更新日 ${esc(d.updated)} ／ 取得 ${n.fetchedAt.toLocaleString("ja-JP")}（経過 約${Math.max(days, 0)}日）`;
+      }
+      const outs = (d.nests || []).length;
+      const toMap = n.url === START ? "" : `<a class="tomap" href="${esc(viewFrom(n.url))}" title="この巣から見た地図へ">🐜 この巣から見る</a>`;
+      out.push(`<div class="card"><div class="head"><a class="name" href="${esc(pageOf(n.url))}">${esc(d.name)} ↗</a>${toMap}</div>
+        <p>${esc(d.about)}</p>${linksOf(d)}<p class="lag">${lag}</p><p class="lag">指している巣：${outs}</p>${news(n.url)}</div>`);
+    }
+    document.getElementById("cards").innerHTML = out.join("");
+    const far = [...nodes.values()].filter(isFar);
+    let fh = "";
+    if (far.length) fh += `2段目の巣（押すと、その巣から見た地図へ）：<br>` + far.map(n => `<a href="${esc(viewFrom(n.url))}" title="${esc(n.url)}">🐜 ${esc(String(n.name).split("｜")[0].slice(0, 16))}</a>`).join("");
+    if (beyond.size) fh += `<br>その先に、まだ ${beyond.size} の巣がある。`;
+    document.getElementById("far").innerHTML = fh;
+  }
+
+  // feeds.json: the Commons collects each Nest's newest items once a day (GitHub Actions)
+  let FEEDS = null;
+  const fmt = s => s ? new Date(s).toLocaleString("ja-JP", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "—";
+  function lagText(pub, got) {
+    if (!pub || !got) return "";
+    const h = Math.max(0, Math.round((new Date(got) - new Date(pub)) / 3600000));
+    return h < 48 ? `${h}時間` : `${Math.round(h / 24)}日`;
+  }
+  function news(url) {
+    const nd = nodes.get(url); if (nd && isFar(nd)) return "";
+    const f = FEEDS && FEEDS.nests && FEEDS.nests[url];
+    if (!f || !(f.items || []).length) return "";
+    const li = f.items.map(it => `<li><a href="${esc(it.link)}">${esc(it.title || "（無題）")}</a>
+      <span class="lag">公開 ${esc(fmt(it.published))} ／ 仕入れ ${esc(fmt(it.fetched))}${it.published ? `（${lagText(it.published, it.fetched)}後）` : ""}</span></li>`).join("");
+    return `<ul class="news">${li}</ul>`;
+  }
+  // 円の色：仕入れた時点から見て、いちばん新しい記事がどれだけ前に公開されたか
+  function freshness(url) {
+    const f = FEEDS && FEEDS.nests && FEEDS.nests[url];
+    if (!f || !FEEDS.collected_at) return "";
+    const ts = (f.items || []).map(it => Date.parse(it.published)).filter(t => !isNaN(t));
+    if (!ts.length) return "";
+    const h = (Date.parse(FEEDS.collected_at) - Math.max(...ts)) / 3600000;
+    return h <= 24 ? "fresh1" : h <= 24 * 7 ? "fresh7" : "";
+  }
+  async function loadFeeds() {
+    try { const r = await fetch("feeds.json", { cache: "no-store" }); if (r.ok) FEEDS = await r.json(); } catch {}
+  }
+
+  // 地図そのものが別のページにある巣は、ページへ行くかわりにその地図へ（DyXis の入口ではなく Commons へ）
+  const MAP_PAGE = { "https://ittekiou.github.io/dyxis/": "https://ittekiou.github.io/dyxis/commons.html" };
+  function pageOf(u) { return MAP_PAGE[u] || u; }
+  function viewFrom(u) { const x = new URL(location.href); x.search = ""; x.searchParams.set("start", norm(u)); return x.href; }
+  // 出発点の切り替え
+  const input = document.getElementById("startUrl");
+  if (START !== norm(here)) { input.value = START; document.getElementById("backHome").hidden = false; }
+  document.getElementById("from").addEventListener("submit", e => {
+    e.preventDefault();
+    const v = input.value.trim(); if (!v) return;
+    const u = new URL(location.href); u.search = ""; u.searchParams.set("start", norm(v));
+    location.href = u.href;
+  });
+
+  // 見出しは、この箱の札から
+  fetch(here + "nest.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(n => {
+    if (!n) return;
+    if (n.name) { document.getElementById("ownName").textContent = n.name; document.title = n.name + "｜Commons"; }
+    if (n.about) document.getElementById("ownAbout").textContent = n.about;
+  }).catch(() => {});
+
+  Promise.all([crawl(), loadFeeds()]).then(() => {
+    draw(); cards();
+    if (FEEDS && FEEDS.collected_at) {
+      document.getElementById("collected").textContent = `新着の仕入れ：${fmt(FEEDS.collected_at)}（一日二回）`;
+      document.querySelector(".legend").classList.add("has-feeds");
+    }
+    const all = [...nodes.values()];
+    const n1 = all.filter(n => n.depth === 1).length, n2 = all.filter(isFar).length;
+    document.getElementById("status").textContent = `1段目 ${n1} ／ 2段目 ${n2} ／ その先 ${beyond.size}（起点：${START}）`;
+  });
+})();
+</script>
+</body>
+</html>
