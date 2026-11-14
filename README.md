@@ -6,39 +6,40 @@
 
 ---
 
-## The Garden
+## From Solo to Multiplayer?
 
-Every digital garden begins as a solo garden.
+Inspired by [Maggie Appleton's *A Brief History & Ethos of the Digital Garden*](https://maggieappleton.com/garden-history).
 
-Some gardens may connect.
+What happens when independent digital gardens begin to connect?
 
-Some may not.
+This is an experiment, not an answer.
 
-Both are gardens.
+Every garden can stand on its own.
 
----
-
-## The Rhizome
-
-Connections need not be simultaneous.
-
-They may grow across places, platforms, and time.
-
-**Synchro-Lag Rhizome (SLR)**
-
-For now, we call the connections *tunnels*.
+Connections are possible, not required.
 
 ---
 
-## The Commons
+## How It Works
 
-This is one experimental commons for digital gardeners.
+No central registry. No framework lock-in.
 
-Built with [DyXis](https://ittekiou.github.io/dyxis/) and SLL/JP.
+A garden can publish a small, static `nest.json` file at its root, pointing to other gardens.
 
-No central garden required.
+Those references can be followed across places and time.
 
-No connection required.
+We call this possibility a **Synchro-Lag Rhizome (SLR)**.
+
+For now, we call the connecting paths *tunnels*.
+
+---
+
+## Explore
+
+- [DiGRhiC Commons](https://ittekiou.github.io/DiGRhiC/) — this experimental garden commons
+- [CESE PEC](https://ittekiou.github.io/CESE-PEC/) — an existing working commons
+- [DyXis](https://ittekiou.github.io/dyxis/) — the underlying experiment
+- [DyXis English Guide](https://ittekiou.github.io/dyxis/guide-en.html) — how to make a nest
 
 ---
 
