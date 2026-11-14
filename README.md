@@ -1,21 +1,47 @@
-# CESE PEC 💩 排泄猛者倶楽部
+# DiGRhiC 🌱 Digital Gardeners' Rootwork
 
-Club Excretus: Societas Excretorum
+**Digital Gardens Rhizomatically Connected**
 
-The Prolific Excretors Club
-
-## 会則
-
-第一条　どっかでつながっとく。以上。
+*From Solo Gardens to Multiplayer Gardens.*
 
 ---
 
-附則　この箱は写してよい。写した箱も、どっかでつながっとく。
+## The Garden
+
+Every digital garden begins as a solo garden.
+
+Some gardens may connect.
+
+Some may not.
+
+Both are gardens.
 
 ---
 
-💩はなんにも知らないけれど。
+## The Rhizome
 
-🐜 [Areå.na](https://www.are.na/kei-itteki/tracentrance)でつながる 👉 [CESE PEC｜The Rhizome Pit 🌱](https://www.are.na/cese-pec-the-rhizome-pit-a7jqy-i3aee)  
+Connections need not be simultaneous.
+
+They may grow across places, platforms, and time.
+
+**Synchro-Lag Rhizome (SLR)**
+
+For now, we call the connections *tunnels*.
 
 ---
+
+## The Commons
+
+This is one experimental commons for digital gardeners.
+
+Built with [DyXis](https://ittekiou.github.io/dyxis/) and SLL/JP.
+
+No central garden required.
+
+No connection required.
+
+---
+
+*Everything begins with solo play.*
+
+🐜🌱
