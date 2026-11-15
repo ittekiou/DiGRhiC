@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -123,17 +123,19 @@
   <p class="brand" id="ownName">Commons</p>
   <p class="tag sub" id="ownAbout"></p>
 </header>
-<section id="rules" aria-label="会則"></section>
+<section id="rules" aria-label="Introduction"></section>
 <nav class="site"><b>Map (Commons)</b> ・ <a href="nest.json" target="_blank" rel="noopener">Sign (nest.json)</a> ・ <a href="https://ittekiou.github.io/dyxis/guide-en.html">How DyXis Works</a></nav>
 
 <main>
   <form id="from">
-    <input id="startUrl" type="url" placeholder="あなたの巣の住所（例：https://example.github.io/nest/）" aria-label="出発点にする巣の住所">
-    <button type="submit">この巣から見る</button>
-    <a id="backHome" href="./" hidden>この別荘から見る</a>
-  </form>
-  <div id="status">巣をたどっています…</div>
-  <svg id="map" viewBox="0 0 800 560" role="img" aria-label="Nestのつながり">
+  <input id="startUrl" type="url"
+    placeholder="Your nest URL (e.g. https://example.github.io/nest/)"
+    aria-label="Starting nest URL">
+  <button type="submit">View from this nest</button>
+  <a id="backHome" href="./" hidden>Back to this Commons</a>
+</form>
+<div id="status">Exploring nests…</div>
+<svg id="map" viewBox="0 0 800 560" role="img" aria-label="Nest connections">
     <defs>
       <marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
         <path d="M0,0 L10,5 L0,10 z" fill="#a8a8a8"/>
@@ -146,14 +148,14 @@
     <g id="nodes"></g>
   </svg>
   <div class="legend">
-    <span>一方の参照</span>
-    <span class="m">相互参照</span>
-    <span class="x">取得できなかった巣</span>
-    <span class="far">2段目の巣</span>
-    <span class="fresh f1">24時間以内に新着</span>
-    <span class="fresh f7">7日以内に新着</span>
-    <span class="go"><b class="pg"></b>大きい丸を押すと、その巣のページへ</span>
-    <span class="go"><b class="ant">🐜</b>この丸を押すと、その巣から見た地図へ</span>
+    <span>One-way reference</span>
+    <span class="m">Mutual reference</span>
+    <span class="x">Unreachable nest</span>
+    <span class="far">Second-hop nest</span>
+    <span class="fresh f1">Latest feed item: within 24 hours</span>
+    <span class="fresh f7">Latest feed item: within 7 days</span>
+    <span class="go"><b class="pg"></b>Click a large circle to visit the nest</span>
+    <span class="go"><b class="ant">🐜</b>Click this circle to view the map from that nest</span>
   </div>
 
   <h2>NESTS</h2>
@@ -163,15 +165,21 @@
 </main>
 
 <footer>
-  <p>  JSONから確認できるのは相互参照まで。相互認知や交流は推定しない。<br>
-  updated は自己申告の日付。表示の差は「記載された更新日から取得時点までの経過」。<br>
-  巣のカードに並ぶ小さな札は、その巣が札に書いた「リンク」（札を持たない、ほかの場所）。<br>
-  地図に大きく描くのは、起点と、起点が札に書いた巣（1段目）。その巣たちが書いた巣（2段目）は小さな 🐜 の丸で描き、その先は数だけ数える。新着を仕入れるのは1段目まで。<br>
-  新着は、別荘が一日二回、各巣の feeds から仕入れたもの。「公開」は記事の側の時刻、「仕入れ」は別荘が取りに行った時刻。<br>
-  円の色は、仕入れた時点でいちばん新しい記事の公開がどれだけ前だったか。巣が動いたかどうかの目安で、誰かが読んだかどうかではない。</p>
+  <p>
+  JSON references show connections, not mutual awareness or interaction.<br>
+  The updated date is self-reported. The displayed lag is the time between that date and retrieval.<br>
+  Small links on nest cards lead to other places listed in that nest's sign.<br>
+  Large circles represent the starting nest and its first-hop references. Small ant circles represent second-hop nests. More distant nests are counted but not drawn. Feeds are collected only through the first hop.<br>
+  This Commons collects feed items twice daily. Published is the item's timestamp; Collected is when the Commons retrieved it.<br>
+  Circle colors indicate the age of the latest published feed item at collection time, not whether anyone has read it.
+  </p>
   <nav class="site"><b>Map (Commons)</b> ・ <a href="nest.json" target="_blank" rel="noopener">Sign (nest.json)</a> ・ <a href="https://ittekiou.github.io/dyxis/guide-en.html">How DyXis Works</a></nav>
-  <p class="credit">この別荘は、<a href="https://ittekiou.github.io/dyxis/">DyXis</a> のしくみで建てたもの。写して、自分の別荘にしてよい。<br>
-  DyXis｜built on SLL ・ Synchro-Lag LOCUS｜SLL</p>
+  <p class="credit">
+  This Commons was built with
+  <a href="https://ittekiou.github.io/dyxis/">DyXis</a>.
+  Copy it and make your own.<br>
+  DyXis｜built on SLL ・ Synchro-Lag LOCUS｜SLL
+</p>
   <p class="credit">© 2026 K.E. Itekki and contributors<br>
   Texts are published under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Code is released under the <a href="LICENSE">MIT License</a>.</p>
 </footer>
