@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: How DyXis Works
+    url: https://ittekiou.github.io/dyxis/guide-en.html
+    about: How the map works, and how to put a signpost (nest.json) in your garden
+  - name: Copy This Commons
+    url: https://github.com/ittekiou/DiGRhiC/blob/main/COPY-GUIDE.md
+    about: Make your own Commons from the DiGRhiC template
