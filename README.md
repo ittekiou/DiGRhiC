@@ -51,6 +51,8 @@ Start with [DiGRhiC](https://github.com/ittekiou/DiGRhiC) — copy this garden c
 
 [Step-by-step Copy Guide](https://github.com/ittekiou/DiGRhiC/blob/main/COPY-GUIDE.md) — make your own Commons.
 
+Want your garden on this map? Open an [Issue](https://github.com/ittekiou/DiGRhiC/issues) with your nest address (label: *Add my garden*). To be taken off, use *Remove my garden*.
+
 Your garden. Your address. Your connections.
 
 *Everything begins with solo play.*
