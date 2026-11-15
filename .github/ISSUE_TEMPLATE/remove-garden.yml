@@ -1,0 +1,16 @@
+name: Remove my garden
+description: Ask DiGRhiC to take your garden off its map.
+title: "[Remove] "
+labels: ["Remove my garden"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Your nest address
+      placeholder: https://yourname.github.io/my-garden/
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: Anything else? (optional)

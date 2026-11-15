@@ -1,0 +1,37 @@
+name: Add my garden
+description: Ask DiGRhiC to list your garden on its map.
+title: "[Add] "
+labels: ["Add my garden"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Your garden needs a signpost: a `nest.json` file at its address. See [How DyXis Works](https://ittekiou.github.io/dyxis/guide-en.html).
+        No signpost yet? A [CHIC TEC P.O. Box](https://github.com/ittekiou/CHIC-TEC/issues/new?template=rent-box.yml) can hold one for you for a while.
+        Being listed means DiGRhiC refers to your garden. It does not mean membership, and you don't have to list DiGRhiC back.
+        Everything you write here is public.
+  - type: input
+    id: name
+    attributes:
+      label: Garden name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Your nest address (ending in /)
+      description: Your signpost should be at this address + nest.json
+      placeholder: https://yourname.github.io/my-garden/
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: Anything else? (optional)
+  - type: checkboxes
+    id: agree
+    attributes:
+      label: Confirm
+      options:
+        - label: I understand that a listing is a public reference, not a membership.
+          required: true
