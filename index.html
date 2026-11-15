@@ -360,7 +360,7 @@
       const outs = (d.nests || []).length;
       const toMap = n.url === START ? "" : `<a class="tomap" href="${esc(viewFrom(n.url))}" title="View the map from this nest">🐜 View from this nest</a>`;
       out.push(`<div class="card"><div class="head"><a class="name" href="${esc(pageOf(n.url))}">${esc(d.name)} ↗</a>${toMap}</div>
-        <p>${esc(d.about)}</p>${linksOf(d)}<p class="lag">${lag}</p><p class="lag">Referenced nests:${outs}</p>${news(n.url)}</div>`);
+        <p>${esc(d.about)}</p>${linksOf(d)}<p class="lag">${lag}</p><p class="lag">Referenced nests: ${outs}</p>${news(n.url)}</div>`);
     }
     document.getElementById("cards").innerHTML = out.join("");
     const far = [...nodes.values()].filter(isFar);
