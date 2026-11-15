@@ -11,7 +11,12 @@
       "url": "https://github.com/ittekiou/DiGRhiC/commits/main.atom"
     }
   ],
-  "links": [],
+  "links": [
+    {
+    "title": "Add your garden",
+    "url": "https://github.com/ittekiou/DiGRhiC/issues/new?template=add-garden.yml"
+    }
+  ],
   "nests": [
     {
       "name": "DyXis",
