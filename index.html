@@ -244,7 +244,7 @@
           else beyondCand.add(to);
         }
       } catch (e) { node.error = String(e); }
-      document.getElementById("status").textContent = `巣をたどっています…（${nodes.size}）`;
+      document.getElementById("status").textContent = `Exploring nests… (${nodes.size})`;
     }
     // 1段目までに書かれていて、たどれなかった巣は、点線の円で描く。2段目が書いた先の巣は、数だけ数える。
     for (const [from, to] of edges) {
@@ -320,7 +320,7 @@
         if (anchor === "middle") ty = p.y + (s < 0 ? -20 : 28);
       }
       nh += `<g class="${cls}" data-url="${esc(n.url)}"><title>${esc(n.name)}\n${esc(n.url)}</title>
-        <circle cx="${p.x}" cy="${p.y}" r="${far ? 13 : 34}"/><text x="${tx}" y="${ty}" style="text-anchor:${anchor}">${esc(label)}</text>${far ? `<text class="ant" x="${p.x}" y="${p.y + 5}">🐜</text>` : (n.url === START ? "" : `<g class="tomap"><title>この巣から見た地図へ</title><circle class="badge" cx="${p.x + 25}" cy="${p.y - 25}" r="11"/><text class="ant" x="${p.x + 25}" y="${p.y - 21}">🐜</text></g>`)}</g>`;
+        <circle cx="${p.x}" cy="${p.y}" r="${far ? 13 : 34}"/><text x="${tx}" y="${ty}" style="text-anchor:${anchor}">${esc(label)}</text>${far ? `<text class="ant" x="${p.x}" y="${p.y + 5}">🐜</text>` : (n.url === START ? "" : `<g class="tomap"><title>View the map from this nest</title><circle class="badge" cx="${p.x + 25}" cy="${p.y - 25}" r="11"/><text class="ant" x="${p.x + 25}" y="${p.y - 21}">🐜</text></g>`)}</g>`;
     }
     const g = document.getElementById("nodes");
     g.innerHTML = nh;
@@ -348,42 +348,42 @@
     for (const n of nodes.values()) {
       if (isFar(n)) continue;
       if (!n.ok) {
-        out.push(`<div class="card missing"><a class="name" href="${esc(n.url)}">${esc(n.name)}</a><p>${n.unvisited ? "まだたどっていない巣" : "nest.json を取得できなかった"}</p><p class="lag">${esc(n.url)}</p></div>`);
+        out.push(`<div class="card missing"><a class="name" href="${esc(n.url)}">${esc(n.name)}</a><p>${n.unvisited ? "Nest not yet explored" : "Could not retrieve nest.json"}</p><p class="lag">${esc(n.url)}</p></div>`);
         continue;
       }
       const d = n.data;
       let lag = "";
       if (d.updated) {
         const days = Math.floor((n.fetchedAt - new Date(d.updated + "T00:00:00")) / 86400000);
-        lag = `記載の更新日 ${esc(d.updated)} ／ 取得 ${n.fetchedAt.toLocaleString("ja-JP")}（経過 約${Math.max(days, 0)}日）`;
+        lag = `Updated (self-reported): ${esc(d.updated)} / Retrieved: ${n.fetchedAt.toLocaleString("en-US")} (approx. ${Math.max(days, 0)} days later)`;
       }
       const outs = (d.nests || []).length;
-      const toMap = n.url === START ? "" : `<a class="tomap" href="${esc(viewFrom(n.url))}" title="この巣から見た地図へ">🐜 この巣から見る</a>`;
+      const toMap = n.url === START ? "" : `<a class="tomap" href="${esc(viewFrom(n.url))}" title="View the map from this nest">🐜 View from this nest</a>`;
       out.push(`<div class="card"><div class="head"><a class="name" href="${esc(pageOf(n.url))}">${esc(d.name)} ↗</a>${toMap}</div>
-        <p>${esc(d.about)}</p>${linksOf(d)}<p class="lag">${lag}</p><p class="lag">指している巣：${outs}</p>${news(n.url)}</div>`);
+        <p>${esc(d.about)}</p>${linksOf(d)}<p class="lag">${lag}</p><p class="lag">Referenced nests:${outs}</p>${news(n.url)}</div>`);
     }
     document.getElementById("cards").innerHTML = out.join("");
     const far = [...nodes.values()].filter(isFar);
     let fh = "";
-    if (far.length) fh += `2段目の巣（押すと、その巣から見た地図へ）：<br>` + far.map(n => `<a href="${esc(viewFrom(n.url))}" title="${esc(n.url)}">🐜 ${esc(String(n.name).split("｜")[0].slice(0, 16))}</a>`).join("");
-    if (beyond.size) fh += `<br>その先に、まだ ${beyond.size} の巣がある。`;
+    if (far.length) fh += `Second-hop nests (click to explore from each nest):<br>` + far.map(n => `<a href="${esc(viewFrom(n.url))}" title="${esc(n.url)}">🐜 ${esc(String(n.name).split("｜")[0].slice(0, 16))}</a>`).join("");
+    if (beyond.size) fh += `<br>${beyond.size} additional nests lie beyond the second hop.`;
     document.getElementById("far").innerHTML = fh;
   }
 
-  // feeds.json: the Commons collects each Nest's newest items once a day (GitHub Actions)
+  // feeds.json: the Commons collects first-hop nests' newest items twice daily (GitHub Actions)
   let FEEDS = null;
-  const fmt = s => s ? new Date(s).toLocaleString("ja-JP", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "—";
+  const fmt = s => s ? new Date(s).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "—";
   function lagText(pub, got) {
     if (!pub || !got) return "";
     const h = Math.max(0, Math.round((new Date(got) - new Date(pub)) / 3600000));
-    return h < 48 ? `${h}時間` : `${Math.round(h / 24)}日`;
+    return h < 48 ? `${h} hours` : `${Math.round(h / 24)} days`;
   }
   function news(url) {
     const nd = nodes.get(url); if (nd && isFar(nd)) return "";
     const f = FEEDS && FEEDS.nests && FEEDS.nests[url];
     if (!f || !(f.items || []).length) return "";
-    const li = f.items.map(it => `<li><a href="${esc(it.link)}">${esc(it.title || "（無題）")}</a>
-      <span class="lag">公開 ${esc(fmt(it.published))} ／ 仕入れ ${esc(fmt(it.fetched))}${it.published ? `（${lagText(it.published, it.fetched)}後）` : ""}</span></li>`).join("");
+    const li = f.items.map(it => `<li><a href="${esc(it.link)}">${esc(it.title || "(Untitled)")}</a>
+  <span class="lag">Published: ${esc(fmt(it.published))} / Collected: ${esc(fmt(it.fetched))}${it.published ? ` (${lagText(it.published, it.fetched)} later)` : ""}</span></li>`).join("");
     return `<ul class="news">${li}</ul>`;
   }
   // 円の色：仕入れた時点から見て、いちばん新しい記事がどれだけ前に公開されたか
@@ -423,12 +423,12 @@
   Promise.all([crawl(), loadFeeds()]).then(() => {
     draw(); cards();
     if (FEEDS && FEEDS.collected_at) {
-      document.getElementById("collected").textContent = `新着の仕入れ：${fmt(FEEDS.collected_at)}（一日二回）`;
+      document.getElementById("collected").textContent = `Feeds collected: ${fmt(FEEDS.collected_at)} (twice daily)`;
       document.querySelector(".legend").classList.add("has-feeds");
     }
     const all = [...nodes.values()];
     const n1 = all.filter(n => n.depth === 1).length, n2 = all.filter(isFar).length;
-    document.getElementById("status").textContent = `1段目 ${n1} ／ 2段目 ${n2} ／ その先 ${beyond.size}（起点：${START}）`;
+    document.getElementById("status").textContent = `First-hop ${n1} / Second-hop ${n2} / Beyond ${beyond.size} (Starting nest: ${START})`;
   });
 })();
 </script>
