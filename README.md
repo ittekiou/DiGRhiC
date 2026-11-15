@@ -37,9 +37,22 @@ For now, we call the connecting paths *tunnels*.
 ## Explore
 
 - [DiGRhiC Commons](https://ittekiou.github.io/DiGRhiC/) — this experimental garden commons
-- [CESE PEC](https://ittekiou.github.io/CESE-PEC/) — an existing working commons
 - [DyXis](https://ittekiou.github.io/dyxis/) — the underlying experiment
 - [DyXis English Guide](https://ittekiou.github.io/dyxis/guide-en.html) — how to make a nest
+
+---
+
+## Make Your Own Commons
+
+This commons is yours to copy, modify, and grow.
+
+Start with the [CESE PEC template](https://github.com/ittekiou/CESE-PEC/generate).
+
+Create your own repository, edit `nest.json`, `README.md`, and `index.html`, initialize `feeds.json`, then enable GitHub Pages.
+
+Your garden. Your address. Your connections.
+
+No permission required.
 
 ---
 
