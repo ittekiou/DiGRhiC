@@ -44,9 +44,9 @@ For now, we call the connecting paths *tunnels*.
 
 ## Make Your Own Commons
 
-Start with [DiGRhiC](https://github.com/ittekiou/DiGRhiC) — copy this garden commons and make it your own.
+Start with [DiGRhiC](https://github.com/ittekiou/DiGRhiC) — copy this garden commons and make it your own ([use this template](https://github.com/ittekiou/DiGRhiC/generate)).
 
-[CESE PEC](https://github.com/ittekiou/CESE-PEC) is another Commons example.
+[CESE PEC](https://github.com/ittekiou/CESE-PEC) is another Commons example ([use this template](https://github.com/ittekiou/CESE-PEC/generate)).
 
 [Step-by-step Copy Guide](https://github.com/ittekiou/DiGRhiC/blob/main/COPY-GUIDE.md) — make your own Commons.
 
