@@ -48,19 +48,20 @@ The Commons homepage displays this README above the map.
 
 You may keep, rewrite, or remove the original text.
 
-## 4. Edit `index.html`
+## 4. Customize `index.html`
 
-Search for and replace the original Commons-specific information:
+Update the Commons-specific settings:
 
-- Page `<title>`
-- Meta description
+- Page title and meta description
 - Favicon and Apple touch icon paths
-- The `HOME` fallback URL
-- Navigation labels and other text, if needed
+- The `HOME` fallback URL, if needed
+- Navigation links, if you want different destinations
 
-Keep the map and feed-handling scripts unless you intend to change their behavior.
+The interface is already in English.
 
-Replace the copied icons when you have your own.
+You do not need to translate or modify the map, crawling, or feed-handling code.
+
+Replace the copied icons with your own when ready.
 
 ## 5. Initialize `feeds.json`
 
@@ -109,10 +110,11 @@ Open your GitHub Pages address.
 
 Check that:
 
-- Your name and README appear
+- Your Commons name and README appear
 - Your `nest.json` loads
 - The map starts from your Commons
 - The intended nests appear
+- The English interface displays correctly, including nest cards, feed timestamps, and map navigation
 - Feed collection works
 
 You can now share your Commons address.
