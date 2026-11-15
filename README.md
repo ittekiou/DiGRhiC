@@ -48,6 +48,8 @@ Start with [DiGRhiC](https://github.com/ittekiou/DiGRhiC) — copy this garden c
 
 Or start with the [CESE PEC template](https://github.com/ittekiou/CESE-PEC/generate) for a more general-purpose commons.
 
+[Step-by-step Copy Guide](https://github.com/ittekiou/DiGRhiC/blob/main/COPY-GUIDE.md) — make your own Commons.
+
 Your garden. Your address. Your connections.
 
 *Everything begins with solo play.*
