@@ -56,13 +56,23 @@ Update the Commons-specific settings:
 
 - Page title and meta description
 - The `HOME` fallback URL — used only when you open `index.html` directly from your computer. Usually no change is needed.
-- Navigation links, if you want different destinations
+- Navigation links, if you want different destinations (the "Add your garden" link must be changed — see 4b)
 
 The interface is already in English.
 
 You do not need to translate or modify the map, crawling, or feed-handling code.
 
 Icon paths are relative, so they work as they are. Replace the copied icons (`favicon.png`, `apple-touch-icon.png`) with your own when ready.
+
+## 4b. Update the Request Forms
+
+DiGRhiC takes requests ("Add my garden", "Remove my garden") through GitHub Issues. Your copy brings these along, but they still point to DiGRhiC.
+
+- `.github/ISSUE_TEMPLATE/add-garden.yml` and `remove-garden.yml` — change "DiGRhiC" to your Commons name, or delete the folder if you don't want requests.
+- `.github/ISSUE_TEMPLATE/config.yml` — keep or change the help links.
+- **Labels are not copied.** Create `Add my garden` and `Remove my garden` in **Issues → Labels**, using exactly the names in the forms. Otherwise the forms still work, but no label is attached.
+- `README.md` and the navigation in `index.html` link to `github.com/ittekiou/DiGRhiC/issues/...`. Change `ittekiou/DiGRhiC` to your own `yourname/repository`, or remove those links.
+- If your `nest.json` has an "Add your garden" link, change it too.
 
 ## 5. Initialize `feeds.json`
 
