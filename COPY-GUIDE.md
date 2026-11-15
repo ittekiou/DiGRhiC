@@ -46,6 +46,8 @@ Replace the DiGRhiC introduction with your own.
 
 The Commons homepage displays this README above the map.
 
+This works when your Commons is served from a `github.io` address. On a custom domain, the `about` text from your `nest.json` is shown instead.
+
 You may keep, rewrite, or remove the original text.
 
 ## 4. Customize `index.html`
@@ -53,19 +55,18 @@ You may keep, rewrite, or remove the original text.
 Update the Commons-specific settings:
 
 - Page title and meta description
-- Favicon and Apple touch icon paths
-- The `HOME` fallback URL, if needed
+- The `HOME` fallback URL — used only when you open `index.html` directly from your computer. Usually no change is needed.
 - Navigation links, if you want different destinations
 
 The interface is already in English.
 
 You do not need to translate or modify the map, crawling, or feed-handling code.
 
-Replace the copied icons with your own when ready.
+Icon paths are relative, so they work as they are. Replace the copied icons (`favicon.png`, `apple-touch-icon.png`) with your own when ready.
 
 ## 5. Initialize `feeds.json`
 
-Do not inherit another Commons' collection history.
+Recommended. The collector rewrites the whole file on its first run, so old data never stays for long. Initializing simply keeps another Commons' collection history from showing on your map until then.
 
 Replace the file contents with:
 
@@ -96,7 +97,7 @@ Save and wait for publication.
 
 The repository includes `.github/workflows/collect.yml`.
 
-Check that GitHub Actions can run and that the workflow can write repository contents.
+The workflow already requests write access (`permissions: contents: write`), so there is usually nothing to change. If the commit step fails, check **Settings → Actions → General → Workflow permissions**.
 
 Open **Actions → Collect feeds → Run workflow**.
 
@@ -119,13 +120,15 @@ Check that:
 
 You can now share your Commons address.
 
+Tip: when you upload files on GitHub, write a short commit message instead of the default "Add files via upload". If your sign lists your commit feed, that message becomes the news line on the map.
+
 ---
 
 ## What Usually Needs No Changes?
 
 - `scripts/collect.py`
 - The map's crawling and drawing logic
-- The existing workflow schedule, unless you want different collection times
+- `.github/workflows/collect.yml`, including its schedule (unless you want different collection times) and its write permission
 
 The collector normally determines its starting address from the GitHub repository environment.
 

@@ -24,7 +24,7 @@ Connections are possible, not required.
 
 No central registry. No framework lock-in.
 
-A garden can publish a small, static `nest.json` file at its root, pointing to other gardens.
+A garden can publish a small sign — a static `nest.json` file — at its root, pointing to other gardens.
 
 Those references can be followed across places and time.
 
@@ -32,11 +32,12 @@ We call this possibility a **Synchro-Lag Rhizome (SLR)**.
 
 For now, we call the connecting paths *tunnels*.
 
+For now, DiGRhiC runs on **SLL (Synchro-Lag LOCUS)** and its JSON Protocol, **SLL/JP**. SLR itself is not limited to SLL — see the [concept memo (in Japanese)](https://camp-us.net/SLR.html).
+
 ---
 
 ## Explore
 
-- [DiGRhiC Commons](https://ittekiou.github.io/DiGRhiC/) — this experimental garden commons
 - [DyXis](https://ittekiou.github.io/dyxis/) — the underlying experiment
 - [DyXis English Guide](https://ittekiou.github.io/dyxis/guide-en.html) — how to make a nest
 
