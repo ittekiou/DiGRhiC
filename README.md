@@ -44,17 +44,11 @@ For now, we call the connecting paths *tunnels*.
 
 ## Make Your Own Commons
 
-This commons is yours to copy, modify, and grow.
+Start with [DiGRhiC](https://github.com/ittekiou/DiGRhiC) — copy this garden commons and make it your own.
 
-Start with the [CESE PEC template](https://github.com/ittekiou/CESE-PEC/generate).
-
-Create your own repository, edit `nest.json`, `README.md`, and `index.html`, initialize `feeds.json`, then enable GitHub Pages.
+Or start with the [CESE PEC template](https://github.com/ittekiou/CESE-PEC/generate) for a more general-purpose commons.
 
 Your garden. Your address. Your connections.
-
-No permission required.
-
----
 
 *Everything begins with solo play.*
 
