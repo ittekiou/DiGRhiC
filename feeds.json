@@ -1,31 +1,31 @@
 {
   "sll": "0.1",
   "commons": "https://ittekiou.github.io/DiGRhiC/",
-  "collected_at": "2026-11-17T12:29:59+00:00",
+  "collected_at": "2026-11-18T02:56:52+00:00",
   "nests": {
     "https://ittekiou.github.io/DiGRhiC/": {
       "name": "DiGRhiC｜Digital Gardeners' Rootwork",
       "items": [
         {
+          "title": "Update nest.json",
+          "link": "https://ittekiou.github.io/DiGRhiC/",
+          "feed": "DiGRhiC｜GitHub Updates",
+          "published": "2026-11-17T22:38:03+00:00",
+          "fetched": "2026-11-18T02:56:53+00:00"
+        },
+        {
           "title": "Add files via upload",
           "link": "https://ittekiou.github.io/DiGRhiC/COPY-GUIDE.html",
           "feed": "DiGRhiC｜GitHub Updates",
           "published": "2026-11-15T05:12:54+00:00",
-          "fetched": "2026-11-17T12:29:59+00:00"
+          "fetched": "2026-11-18T02:56:53+00:00"
         },
         {
           "title": "Add link for adding a garden in nest.json",
           "link": "https://ittekiou.github.io/DiGRhiC/",
           "feed": "DiGRhiC｜GitHub Updates",
           "published": "2026-11-15T04:44:08+00:00",
-          "fetched": "2026-11-17T12:29:59+00:00"
-        },
-        {
-          "title": "Add files via upload",
-          "link": "https://ittekiou.github.io/DiGRhiC/",
-          "feed": "DiGRhiC｜GitHub Updates",
-          "published": "2026-11-15T04:41:21+00:00",
-          "fetched": "2026-11-17T12:29:59+00:00"
+          "fetched": "2026-11-18T02:56:53+00:00"
         }
       ]
     },
@@ -37,21 +37,21 @@
           "link": "https://bsky.app/profile/dyxis.substack.com/post/3n2hyxrp54s2b",
           "feed": "DyXis｜Bluesky",
           "published": "2026-11-17T02:34:00+00:00",
-          "fetched": "2026-11-17T12:30:01+00:00"
+          "fetched": "2026-11-18T02:56:54+00:00"
         },
         {
           "title": "New Commons: DiGRhiC — Digital…",
           "link": "https://bsky.app/profile/dyxis.substack.com/post/3n2dxmmicck2p",
           "feed": "DyXis｜Bluesky",
           "published": "2026-11-15T11:59:00+00:00",
-          "fetched": "2026-11-17T12:30:01+00:00"
+          "fetched": "2026-11-18T02:56:54+00:00"
         },
         {
           "title": "DiGRhiC｜Digital Gardeners' Roo…",
           "link": "https://bsky.app/profile/dyxis.substack.com/post/3n2czxaqms22p",
           "feed": "DyXis｜Bluesky",
           "published": "2026-11-15T03:08:00+00:00",
-          "fetched": "2026-11-17T12:30:01+00:00"
+          "fetched": "2026-11-18T02:56:54+00:00"
         }
       ]
     },
@@ -59,25 +59,25 @@
       "name": "LOCUS｜一狄 啓",
       "items": [
         {
+          "title": "ひとりicon遊び",
+          "link": "https://sizu.me/lirax/posts/zm7otdvdbrck",
+          "feed": "Living RACKs｜SCREP -処-（全部盛り）",
+          "published": "2026-11-18T07:24:34+09:00",
+          "fetched": "2026-11-18T02:56:55+00:00"
+        },
+        {
           "title": "Digital Gardenは、ひとりで育てる庭。 でも、ひとりぼっちとは限らない。 庭と庭のあいだに地下茎が伸びる。…",
           "link": "https://bsky.app/profile/campus6214.substack.com/post/3n2iah45k2k2b",
           "feed": "Living RACKs｜SCREP -処-（全部盛り）",
           "published": "2026-11-17T13:48:00+09:00",
-          "fetched": "2026-11-17T12:30:02+00:00"
+          "fetched": "2026-11-18T02:56:55+00:00"
         },
         {
           "title": "誰も通らないトンネル",
           "link": "https://sizu.me/lirax/posts/b38v0s6wuann",
           "feed": "Living RACKs｜SCREP -処-（全部盛り）",
           "published": "2026-11-17T13:45:44+09:00",
-          "fetched": "2026-11-17T12:30:02+00:00"
-        },
-        {
-          "title": "Solo Gardenは、いつからMultiplayerを待つようになったのか。──Digital Gardenをめぐる言葉の罠",
-          "link": "https://jimt.hatenablog.com/entry/2026/11/17/134134",
-          "feed": "Living RACKs｜SCREP -処-（全部盛り）",
-          "published": "2026-11-17T13:41:34+09:00",
-          "fetched": "2026-11-17T12:30:02+00:00"
+          "fetched": "2026-11-18T02:56:55+00:00"
         }
       ]
     },
@@ -89,21 +89,21 @@
           "link": "https://note.com/echodemy/n/n1e50574f6793",
           "feed": "Echodemy（note）",
           "published": "2026-11-15T21:50:04+09:00",
-          "fetched": "2026-11-17T12:30:02+00:00"
+          "fetched": "2026-11-18T02:56:55+00:00"
         },
         {
           "title": "デジタルガーデンに「受け口」と「札」を立てる── GitHub Pages で Webmention を受け取るまで",
           "link": "https://note.com/echodemy/n/nb3c85078215f",
           "feed": "Echodemy（note）",
           "published": "2026-11-15T21:38:40+09:00",
-          "fetched": "2026-11-17T12:30:02+00:00"
+          "fetched": "2026-11-18T02:56:55+00:00"
         },
         {
           "title": "線路はない。走ってはじめて軌道が残る。",
           "link": "https://note.com/echodemy/n/n2501f5fbe21f",
           "feed": "Echodemy（note）",
           "published": "2026-11-14T12:13:44+09:00",
-          "fetched": "2026-11-17T12:30:02+00:00"
+          "fetched": "2026-11-18T02:56:55+00:00"
         }
       ]
     },
@@ -115,21 +115,21 @@
           "link": "https://ittekiou.github.io/CHIC-TEC/",
           "feed": "CHIC TEC の書き込み",
           "published": "2026-11-15T04:36:45+00:00",
-          "fetched": "2026-11-17T12:30:03+00:00"
+          "fetched": "2026-11-18T02:56:55+00:00"
         },
         {
           "title": "Add files via upload",
           "link": "https://ittekiou.github.io/CHIC-TEC/",
           "feed": "CHIC TEC の書き込み",
           "published": "2026-11-15T04:26:13+00:00",
-          "fetched": "2026-11-17T12:30:03+00:00"
+          "fetched": "2026-11-18T02:56:55+00:00"
         },
         {
           "title": "Add DiGRhiC entry to nest.json",
           "link": "https://ittekiou.github.io/CHIC-TEC/",
           "feed": "CHIC TEC の書き込み",
           "published": "2026-11-15T02:32:01+00:00",
-          "fetched": "2026-11-17T12:30:03+00:00"
+          "fetched": "2026-11-18T02:56:55+00:00"
         }
       ]
     }
