@@ -4,6 +4,10 @@
 
 *From Solo Gardens to Multiplayer Gardens.*
 
+*Any bamboo shoots sprouting in your digital garden?*  
+*Underground, they may already be connected.*  
+*Bamboo spreads. That's the point.*  
+
 ---
 
 ## From Solo to Multiplayer?
