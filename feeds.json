@@ -1,7 +1,7 @@
 {
   "sll": "0.1",
   "commons": "https://ittekiou.github.io/DiGRhiC/",
-  "collected_at": "2026-11-25T04:17:44+00:00",
+  "collected_at": "2026-11-25T13:32:11+00:00",
   "nests": {
     "https://ittekiou.github.io/DiGRhiC/": {
       "name": "DiGRhiC｜Digital Gardeners' Rootwork",
@@ -11,21 +11,21 @@
           "link": "https://ittekiou.github.io/DiGRhiC/",
           "feed": "DiGRhiC｜GitHub Updates",
           "published": "2026-11-21T11:34:48+00:00",
-          "fetched": "2026-11-25T04:17:45+00:00"
+          "fetched": "2026-11-25T13:32:12+00:00"
         },
         {
           "title": "Update README.md",
           "link": "https://ittekiou.github.io/DiGRhiC/",
           "feed": "DiGRhiC｜GitHub Updates",
           "published": "2026-11-21T06:11:13+00:00",
-          "fetched": "2026-11-25T04:17:45+00:00"
+          "fetched": "2026-11-25T13:32:12+00:00"
         },
         {
           "title": "Add files via upload",
           "link": "https://ittekiou.github.io/DiGRhiC/",
           "feed": "DiGRhiC｜GitHub Updates",
           "published": "2026-11-21T06:08:24+00:00",
-          "fetched": "2026-11-25T04:17:45+00:00"
+          "fetched": "2026-11-25T13:32:12+00:00"
         }
       ]
     },
@@ -37,21 +37,21 @@
           "link": "https://www.are.na/block/53205550",
           "feed": "DyXis｜Are.na",
           "published": "2026-11-23T23:18:18+00:00",
-          "fetched": "2026-11-25T04:17:47+00:00"
+          "fetched": "2026-11-25T13:32:17+00:00"
         },
         {
           "title": "CESE PEC｜The Excreta Pit 🌱",
           "link": "https://www.are.na/cese-pec-the-rhizome-pit-a7jqy-i3aee/cese-pec-the-excreta-pit",
           "feed": "DyXis｜Are.na",
           "published": "2026-11-23T23:17:30+00:00",
-          "fetched": "2026-11-25T04:17:47+00:00"
+          "fetched": "2026-11-25T13:32:17+00:00"
         },
         {
           "title": "赤鬼・小赤鬼・小青鬼・青鬼の巣。 札には名前・/rss・/l…",
           "link": "https://bsky.app/profile/dyxis.substack.com/post/3n2zauohebk2r",
           "feed": "DyXis｜Bluesky",
           "published": "2026-11-23T23:11:00+00:00",
-          "fetched": "2026-11-25T04:17:46+00:00"
+          "fetched": "2026-11-25T13:32:14+00:00"
         }
       ]
     },
@@ -59,25 +59,25 @@
       "name": "LOCUS｜一狄 啓",
       "items": [
         {
+          "title": "🌿 ZINE｜note",
+          "link": "https://www.are.na/kei-itteki/zine-note",
+          "feed": "Living RACKs｜SCREP -処-（全部盛り）",
+          "published": "2026-11-25T16:03:29+09:00",
+          "fetched": "2026-11-25T13:32:18+00:00"
+        },
+        {
           "title": "The Red Oni and the Blue Oni 赤鬼と青鬼のDyXis: Different Nests, Different Days.",
           "link": "https://www.amazon.co.jp/dp/B0HSQYL9FZ?&linkCode=ll2&tag=hatenadia0516-22&linkId=7427e97a7d4469c82d5b2920f3913459&ref_=as_li_ss_tl",
           "feed": "Living RACKs｜SCREP -処-（全部盛り）",
           "published": "2026-11-25T08:44:10+09:00",
-          "fetched": "2026-11-25T04:17:47+00:00"
+          "fetched": "2026-11-25T13:32:18+00:00"
         },
         {
           "title": "MBIG-01｜Midnight Baseball — Invisible Ground: 証明の証明論と構文論的エポケー（v1.0）",
           "link": "https://camp-us.net/articles/MBIG-01_Midnight-Baseball_Invisible-Ground_v1.0.html",
           "feed": "Living RACKs｜SCREP -処-（全部盛り）",
           "published": "2026-11-25T00:00:00+09:00",
-          "fetched": "2026-11-25T04:17:47+00:00"
-        },
-        {
-          "title": "MBIG-00｜Midnight Baseball — Invisible Ground: 証明の証明論と構文論的エポケー（v0.1）",
-          "link": "https://camp-us.net/articles/MBIG-00_Midnight-Baseball_Invisible-Ground_v0.1.html",
-          "feed": "Living RACKs｜SCREP -処-（全部盛り）",
-          "published": "2026-11-25T00:00:00+09:00",
-          "fetched": "2026-11-25T04:17:47+00:00"
+          "fetched": "2026-11-25T13:32:18+00:00"
         }
       ]
     },
@@ -89,21 +89,21 @@
           "link": "https://note.com/echodemy/n/n1e50574f6793",
           "feed": "Echodemy（note）",
           "published": "2026-11-15T21:50:04+09:00",
-          "fetched": "2026-11-25T04:17:47+00:00"
+          "fetched": "2026-11-25T13:32:18+00:00"
         },
         {
           "title": "デジタルガーデンに「受け口」と「札」を立てる── GitHub Pages で Webmention を受け取るまで",
           "link": "https://note.com/echodemy/n/nb3c85078215f",
           "feed": "Echodemy（note）",
           "published": "2026-11-15T21:38:40+09:00",
-          "fetched": "2026-11-25T04:17:47+00:00"
+          "fetched": "2026-11-25T13:32:18+00:00"
         },
         {
           "title": "線路はない。走ってはじめて軌道が残る。",
           "link": "https://note.com/echodemy/n/n2501f5fbe21f",
           "feed": "Echodemy（note）",
           "published": "2026-11-14T12:13:44+09:00",
-          "fetched": "2026-11-25T04:17:47+00:00"
+          "fetched": "2026-11-25T13:32:18+00:00"
         }
       ]
     },
@@ -115,21 +115,21 @@
           "link": "https://ittekiou.github.io/CHIC-TEC/",
           "feed": "CHIC TEC の書き込み",
           "published": "2026-11-25T04:13:17+00:00",
-          "fetched": "2026-11-25T04:17:48+00:00"
+          "fetched": "2026-11-25T13:32:18+00:00"
         },
         {
           "title": "Collect eggs",
           "link": "https://ittekiou.github.io/CHIC-TEC/",
           "feed": "CHIC TEC の書き込み",
           "published": "2026-11-24T20:10:50+00:00",
-          "fetched": "2026-11-25T04:17:48+00:00"
+          "fetched": "2026-11-25T13:32:18+00:00"
         },
         {
           "title": "Collect eggs",
           "link": "https://ittekiou.github.io/CHIC-TEC/",
           "feed": "CHIC TEC の書き込み",
           "published": "2026-11-23T21:27:12+00:00",
-          "fetched": "2026-11-25T04:17:48+00:00"
+          "fetched": "2026-11-25T13:32:18+00:00"
         }
       ]
     }
